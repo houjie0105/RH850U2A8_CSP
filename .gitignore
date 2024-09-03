@@ -1,0 +1,6 @@
+*.mtud
+DefaultBuild
+*.scfg
+/.vscode
+*.txt
+*.rcpe
