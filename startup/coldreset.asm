@@ -92,6 +92,18 @@ _stacktop:
   .section  ".INIT_DSEC.const", const
   .align  4
   .dw  #__s.data,  #__e.data,  #__s.data.R
+  .dw  #__s.R_RFD_RODATA_EXTRA.const,  #__e.R_RFD_RODATA_EXTRA.const,  #__s.R_RFD_RODATA_EXTRA.const.R
+  .dw  #__s.R_RFD_CODE_COMMON.text,  #__e.R_RFD_CODE_COMMON.text,  #__s.R_RFD_CODE_COMMON.text.R
+  .dw  #__s.R_RFD_CODE_COMMON_RAM_NO_BGO.text,  #__e.R_RFD_CODE_COMMON_RAM_NO_BGO.text,  #__s.R_RFD_CODE_COMMON_RAM_NO_BGO.text.R
+  .dw  #__s.R_RFD_CODE_USEROWN_COMMON.text,  #__e.R_RFD_CODE_USEROWN_COMMON.text,  #__s.R_RFD_CODE_USEROWN_COMMON.text.R
+  .dw  #__s.R_RFD_CODE_DF.text,  #__e.R_RFD_CODE_DF.text,  #__s.R_RFD_CODE_DF.text.R
+  .dw  #__s.R_RFD_CODE_CF.text,  #__e.R_RFD_CODE_CF.text,  #__s.R_RFD_CODE_CF.text.R
+  .dw  #__s.R_RFD_CODE_CF_RAM_NO_BGO.text,  #__e.R_RFD_CODE_CF_RAM_NO_BGO.text,  #__s.R_RFD_CODE_CF_RAM_NO_BGO.text.R
+  .dw  #__s.R_RFD_CODE_EXTRA.text,  #__e.R_RFD_CODE_EXTRA.text,  #__s.R_RFD_CODE_EXTRA.text.R
+  .dw  #__s.R_RFD_RODATA_VERSION_DF.const,  #__e.R_RFD_RODATA_VERSION_DF.const,  #__s.R_RFD_RODATA_VERSION_DF.const.R
+  .dw  #__s.R_RFD_RODATA_VERSION_CF.const,  #__e.R_RFD_RODATA_VERSION_CF.const,  #__s.R_RFD_RODATA_VERSION_CF.const.R
+  .dw  #__s.R_RFD_RODATA_VERSION_COMMON.const,  #__e.R_RFD_RODATA_VERSION_COMMON.const,  #__s.R_RFD_RODATA_VERSION_COMMON.const.R
+  .dw  #__s.R_RFD_CODE_COMMON_API.text,  #__e.R_RFD_CODE_COMMON_API.text,  #__s.R_RFD_CODE_COMMON_API.text.R
 
   .section  ".INIT_BSEC.const", const
   .align  4

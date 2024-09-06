@@ -43,14 +43,16 @@
 #include "r_mspi.h"
 #include "r_rlin3.h"
 
+#include "r_fls_if.h"
+
 /*****************************************************************************
  Macro definitions
  *****************************************************************************/
 //#define ADC_TEST
-#define CAN_TEST
+//#define CAN_TEST
 //#define MSPI_TEST
 //#define RLIN_LIN_TEST
-#define RLIN_UART_TEST
+//#define RLIN_UART_TEST
 /*****************************************************************************
  Typedef definitions
  *****************************************************************************/
@@ -255,6 +257,9 @@ void Main_Init(void)
         R_OSTM_SetCmp(2U, 0x7A1200UL);
         R_OSTM_Start(2U);
 
+        R_FLS_IF_Init();
+        R_FLS_IF_Erase();
+
         #ifdef ADC_TEST
         R_INTC_Init(227UL, INTC_EITB & INTC_EIMK | INTC_EIP(6UL));
         R_INTC_Bind(227UL, INTC_PEID(0UL));
@@ -292,6 +297,7 @@ void Main_Init(void)
     ENABLE_INTERRUPT();
 }
 
+#ifdef CAN_TEST
 Can_ReturnType Can_Write(Can_HwHandleType Hth, const Can_PduType *PduInfo)
 {
     uint8 Lu1Loop;
@@ -301,6 +307,7 @@ Can_ReturnType Can_Write(Can_HwHandleType Hth, const Can_PduType *PduInfo)
     }
     return (Can_ReturnType)R_RSCFD_BuffSend(0U, 1U, GscstSendBuff[Hth]);
 }
+#endif
 
 void Main_Idle_Task(void)
 {
