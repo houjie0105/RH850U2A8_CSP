@@ -44,7 +44,7 @@
 /*****************************************************************************
  Global functions
  *****************************************************************************/
-extern void R_FLS_IF_Init(void);
-extern void R_FLS_IF_Erase(void);
-
+extern uint8 R_FLS_IF_Init(void);
+extern uint8 R_FLS_IF_Erase(void);
+extern uint8 R_FLS_IF_DeInit(void);
 #endif  /* R_FLS_H */

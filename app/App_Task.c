@@ -259,6 +259,7 @@ void Main_Init(void)
 
         R_FLS_IF_Init();
         R_FLS_IF_Erase();
+        R_FLS_IF_DeInit();
 
         #ifdef ADC_TEST
         R_INTC_Init(227UL, INTC_EITB & INTC_EIMK | INTC_EIP(6UL));

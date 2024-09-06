@@ -54,7 +54,7 @@
 /*****************************************************************************
 --------------------- Global functions --------------------------------------
  *****************************************************************************/
-void R_FLS_IF_Init(void)
+uint8 R_FLS_IF_Init(void)
 {
     T_u4_RFDReturn  l_bu4_returnValue = R_OK;
     T_u2            l_bu2_faciFequency = 0xFFFFU;
@@ -164,11 +164,12 @@ void R_FLS_IF_Init(void)
     {
         /* no operation */
     }
+    return l_bl1_errorFlag;
 }
 
 T_u1  bu1_WriteData[R_RFD_LENGTH_512BYTES] = {0};
 
-void R_FLS_IF_Erase(void)
+uint8 R_FLS_IF_Erase(void)
 {
     T_u4            l_bu4_loopCount = 0;
     T_u4_RFDReturn  l_bu4_returnValue = 0;
@@ -192,6 +193,68 @@ void R_FLS_IF_Erase(void)
     {
         /* no operation */
     }
+    return l_bl1_errorFlag;
+}
+
+uint8 R_FLS_IF_DeInit(void)
+{
+    T_u4_RFDReturn  l_bu4_returnValue;                  /* Return value for this function        */
+    T_bl            l_bl1_errorFlag;                    /* Error flag                            */
+    
+    l_bl1_errorFlag    = R_RFD_FALSE;
+
+    /* Property Area Control */
+    if (l_bl1_errorFlag == R_RFD_FALSE)     /* !CERT-C rule INT02 (QAC message 2100)      s*/
+    {
+        /****************************************/
+        /*  Execute Sample_PropertyAreaControl  */
+        /****************************************/
+        l_bu4_returnValue = Sample_PropertyAreaControl();
+        
+        /* Check return value */
+        if (l_bu4_returnValue != R_RFD_OK)
+        {
+            l_bl1_errorFlag = R_RFD_TRUE;
+        }
+        else
+        {
+            /* no operation */
+        }
+    }
+    else
+    {
+        /* no operation */
+    }
+    
+    if (l_bl1_errorFlag == R_RFD_FALSE)     /* !CERT-C rule INT02 (QAC message 2100) */
+    {
+        /* FHVE Protect OFF (FACI0) */
+        l_bu4_returnValue = R_RFD_SetFHVE(R_RFD_FACI0, R_RFD_FHVE_PROTECT_ON);
+        
+        if (l_bu4_returnValue != R_RFD_OK)
+        {
+            l_bl1_errorFlag = R_RFD_TRUE;
+        }
+        else
+        {
+            /* FHVE Protect OFF (FACI1) */
+            l_bu4_returnValue = R_RFD_SetFHVE(R_RFD_FACI1, R_RFD_FHVE_PROTECT_ON);
+            
+            if (l_bu4_returnValue != R_RFD_OK)
+            {
+                l_bl1_errorFlag = R_RFD_TRUE;
+            }
+            else
+            {
+                /* no operation */
+            }
+        }
+    }
+    else
+    {
+        /* no operation */
+    }
+    return l_bl1_errorFlag;
 }
 
 /*****************************************************************************
